@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MXL File Download Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        select, button {
+            margin: 20px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Select an MXL File to Download</h1>
+    <select id="mxlSelect">
+        <option value="">-- Select an MXL File --</option>
+        <!-- Options will be populated here by JavaScript -->
+    </select>
+    <button onclick="downloadFile()">Download</button>
+
+    <script>
+        // List of MXL files (replace with your actual GitHub URLs)
+        const files = [
+            { name: 'octave_test_1.mxl', url: 'https://github.com/yourusername/yourrepo/blob/main/mxl_files/octave_test_1.mxl?raw=true' },
+            { name: 'octave_test_2.mxl', url: 'https://github.com/yourusername/yourrepo/blob/main/mxl_files/octave_test_2.mxl?raw=true' },
+            // Add more files as needed
+        ];
+
+        // Populate the select dropdown
+        const selectElement = document.getElementById('mxlSelect');
+        files.forEach(file => {
+            const option = document.createElement('option');
+            option.value = file.url;
+            option.textContent = file.name;
+            selectElement.appendChild(option);
+        });
+
+        // Function to trigger download
+        function downloadFile() {
+            const selectedFile = selectElement.value;
+            if (selectedFile) {
+                window.location.href = selectedFile; // Redirect to the file URL for download
+            } else {
+                alert('Please select a file to download');
+            }
+        }
+    </script>
+</body>
+</html>
